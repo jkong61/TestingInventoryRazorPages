@@ -1,0 +1,64 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .tw-dark-enabled-text {
+        @apply tw-text-gray-800 dark:tw-text-white;
+    }
+
+    .tw-border-top {
+        @apply tw-border-t-2 tw-border-solid tw-border-gray-300;
+    }
+
+    .tw-border-bottom {
+        @apply tw-border-b-2 tw-border-solid tw-border-gray-300;
+    }
+
+    .tw-box-shadow {
+        @apply tw-shadow-sm;
+    }
+
+    .tw-container {
+        @apply tw-mx-auto px-4 lg:tw-px-20;
+    }
+
+    .tw-footer {
+        @apply tw-absolute tw-bottom-0 tw-w-full tw-whitespace-nowrap tw-leading-[60px];
+    }
+
+    .tw-nav-link {
+        @apply tw-px-3 tw-text-opacity-40 dark:tw-text-opacity-80 hover:tw-no-underline;
+    }
+
+    .tw-active {
+        @apply tw-text-opacity-60 dark:tw-text-opacity-100 tw-font-semibold;
+    }
+}
+
+@layer base {
+    h1 {
+        @apply tw-text-4xl;
+    }
+
+    h1, h2, h3, h4, h5, h6, p, label, tr, dl {
+        @apply tw-dark-enabled-text;
+    }
+
+    html {
+        @apply tw-min-h-full tw-relative;
+    }
+
+    body {
+        @apply dark:tw-bg-gray-800;
+    }
+
+    a {
+        @apply 
+        tw-transition-colors 
+        tw-dark-enabled-text 
+        hover:tw-text-black 
+        hover:tw-text-opacity-60
+        dark:hover:tw-text-gray-400;
+    }
+}

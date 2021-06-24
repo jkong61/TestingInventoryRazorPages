@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "buildcss:dev": "postcss ./Styles/tailwind.css -o ./wwwroot/css/site.css"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.2.6",
+    "postcss": "^8.3.5",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "^2.2.2"
+  }
+}
