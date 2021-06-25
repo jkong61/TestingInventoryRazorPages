@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -30,7 +32,8 @@ namespace TestingInventoryRazorPages.Pages.StorageItems
         public StorageItem StorageItem { get; set; }
         public async Task<IActionResult> OnPostCheckDescriptionAsync()
         {
-            var result = await _service.StorageItemExists(Description);
+            var result = await _service.EntityItemExistsAsync(e =>
+                string.Equals(e.Description.ToLower(), Description.ToLower()));
             return new JsonResult(!result);
         }
 
@@ -68,7 +71,7 @@ namespace TestingInventoryRazorPages.Pages.StorageItems
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!await _service.StorageItemExists(StorageItem.Id))
+                if (!await _service.EntityItemExistsAsync(e => e.Id == StorageItem.Id))
                 {
                     return NotFound();
                 }

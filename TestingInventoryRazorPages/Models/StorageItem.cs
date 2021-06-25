@@ -8,8 +8,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TestingInventoryRazorPages.Models
 {
+    public interface IStorageItem
+    {
+        int Id { get; set; }
+    }
+
     [Index(nameof(Description), IsUnique = true)]
-    public class StorageItem
+    public class StorageItem : IStorageItem
     {
         public int Id { get; set; }
 

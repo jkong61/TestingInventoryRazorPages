@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TestingInventoryRazorPages.Data;
@@ -67,15 +70,9 @@ namespace TestingInventoryRazorPages.Services
             return success;
         }
 
-        public async Task<bool> StorageItemExists(int id)
+        public async Task<bool> EntityItemExistsAsync(Expression<Func<StorageItem, bool>> condition)
         {
-            return await _context.StorageItem.AnyAsync(e => e.Id == id);
-        }
-
-        public async Task<bool> StorageItemExists(string description)
-        {
-            return await _context.StorageItem.AnyAsync(e => 
-                e.Description.ToLower() == description.ToLower());
+            return await _context.StorageItem.AnyAsync(condition);
         }
     }
 }
