@@ -12,6 +12,7 @@ namespace TestingInventoryRazorPages.Services
         public Task<bool> AddAsync(T item);
         public Task<bool> UpdateAsync(T item);
         public Task<T> FirstAsync(int? id);
+        public Task<bool> RemoveAsync(T item);
         public Task<bool> EntityItemExistsAsync(Expression<Func<T, bool>> condition);
     }
 }

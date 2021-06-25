@@ -7,16 +7,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using TestingInventoryRazorPages.Data;
 using TestingInventoryRazorPages.Models;
+using TestingInventoryRazorPages.Services;
 
 namespace TestingInventoryRazorPages.Pages.StorageItems
 {
     public class DeleteModel : PageModel
     {
-        private readonly TestingInventoryRazorPages.Data.ApplicationDbContext _context;
+        private readonly StorageItemService _storageItemService;
 
-        public DeleteModel(TestingInventoryRazorPages.Data.ApplicationDbContext context)
+        public DeleteModel(StorageItemService storageItemService)
         {
-            _context = context;
+            _storageItemService = storageItemService;
         }
 
         [BindProperty]
@@ -29,7 +30,7 @@ namespace TestingInventoryRazorPages.Pages.StorageItems
                 return NotFound();
             }
 
-            StorageItem = await _context.StorageItem.FirstOrDefaultAsync(m => m.Id == id);
+            StorageItem = await _storageItemService.FirstAsync(id);
 
             if (StorageItem == null)
             {
@@ -45,12 +46,11 @@ namespace TestingInventoryRazorPages.Pages.StorageItems
                 return NotFound();
             }
 
-            StorageItem = await _context.StorageItem.FindAsync(id);
+            StorageItem = await _storageItemService.FirstAsync(id);
 
             if (StorageItem != null)
             {
-                _context.StorageItem.Remove(StorageItem);
-                await _context.SaveChangesAsync();
+                await _storageItemService.RemoveAsync(StorageItem);
             }
 
             return RedirectToPage("./Index");

@@ -70,6 +70,22 @@ namespace TestingInventoryRazorPages.Services
             return success;
         }
 
+        public async Task<bool> RemoveAsync(StorageItem item)
+        {
+            bool success;
+            _context.StorageItem.Remove(item);
+            try
+            {
+                await _context.SaveChangesAsync();
+                success = true;
+            }
+            catch
+            {
+                success = false;
+            }
+            return success;
+        }
+
         public async Task<bool> EntityItemExistsAsync(Expression<Func<StorageItem, bool>> condition)
         {
             return await _context.StorageItem.AnyAsync(condition);

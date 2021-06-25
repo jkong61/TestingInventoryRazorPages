@@ -33,7 +33,7 @@ namespace TestingInventoryRazorPages.Pages.StorageItems
         public async Task<IActionResult> OnPostCheckDescriptionAsync()
         {
             var result = await _service.EntityItemExistsAsync(e =>
-                string.Equals(e.Description.ToLower(), Description.ToLower()));
+                string.Equals(e.Description.ToUpper(), Description.ToUpper()));
             return new JsonResult(!result);
         }
 
