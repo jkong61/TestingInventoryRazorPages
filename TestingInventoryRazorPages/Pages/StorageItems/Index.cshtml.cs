@@ -13,9 +13,9 @@ namespace TestingInventoryRazorPages.Pages.StorageItems
 {
     public class IndexModel : PageModel
     {
-        private readonly StorageItemService _service;
+        private readonly IStorageItemService _service;
 
-        public IndexModel(StorageItemService storageItemService)
+        public IndexModel(IStorageItemService storageItemService)
         {
             _service = storageItemService;
         }

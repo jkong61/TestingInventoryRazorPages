@@ -13,9 +13,9 @@ namespace TestingInventoryRazorPages.Pages.StorageItems
 {
     public class DeleteModel : PageModel
     {
-        private readonly StorageItemService _storageItemService;
+        private readonly IStorageItemService _storageItemService;
 
-        public DeleteModel(StorageItemService storageItemService)
+        public DeleteModel(IStorageItemService storageItemService)
         {
             _storageItemService = storageItemService;
         }

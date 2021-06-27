@@ -12,9 +12,9 @@ namespace TestingInventoryRazorPages.Pages.StorageItems
 {
     public class EditModel : PageModel
     {
-        private readonly StorageItemService _service;
+        private readonly IStorageItemService _service;
 
-        public EditModel(StorageItemService storageItemService)
+        public EditModel(IStorageItemService storageItemService)
         {
             _service = storageItemService;
         }
@@ -64,18 +64,28 @@ namespace TestingInventoryRazorPages.Pages.StorageItems
                 return Page();
             }
 
-            StorageItem.Description = Description;
-            try
+
+            if (await TryUpdateModelAsync<StorageItem>(
+                StorageItem,
+                "storageitem",
+                s => s.Quantity,
+                s => s.Description
+                )) 
             {
-                await _service.UpdateAsync(StorageItem);
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!await _service.EntityItemExistsAsync(e => e.Id == StorageItem.Id))
+                try
                 {
-                    return NotFound();
+                    StorageItem.Description = Description;
+                    await _service.UpdateAsync(StorageItem);
+                    // Complete Update and break out of code block
                 }
-                throw;
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!await _service.EntityItemExistsAsync(e => e.Id == StorageItem.Id))
+                    {
+                        return NotFound();
+                    }
+                    throw;
+                }
             }
 
             return RedirectToPage("./Index");

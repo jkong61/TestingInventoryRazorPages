@@ -41,7 +41,7 @@ namespace TestingInventoryRazorPages
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddTransient<StorageItemService>();
+            services.AddTransient<IStorageItemService,StorageItemService>();
             services.AddRazorPages();
         }
 

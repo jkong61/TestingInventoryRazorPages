@@ -11,7 +11,7 @@ using TestingInventoryRazorPages.Models;
 
 namespace TestingInventoryRazorPages.Services
 {
-    public class StorageItemService : IEntityService<StorageItem>
+    public class StorageItemService : IStorageItemService
     {
         private readonly ApplicationDbContext _context;
 

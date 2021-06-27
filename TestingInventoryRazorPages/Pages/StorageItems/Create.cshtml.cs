@@ -13,9 +13,9 @@ namespace TestingInventoryRazorPages.Pages.StorageItems
 {
     public class CreateModel : PageModel
     {
-        private readonly StorageItemService _service;
+        private readonly IStorageItemService _service;
 
-        public CreateModel(StorageItemService storageItemService)
+        public CreateModel(IStorageItemService storageItemService)
         {
             _service = storageItemService;
         }
@@ -40,7 +40,6 @@ namespace TestingInventoryRazorPages.Pages.StorageItems
             {
                 return RedirectToPage("./Index");
             }
-
             return Page();
         }
     }
