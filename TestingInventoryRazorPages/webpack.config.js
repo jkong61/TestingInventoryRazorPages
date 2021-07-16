@@ -1,5 +1,5 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { resolve } = require("path");
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const path = require('path');
 const devMode = process.env.NODE_ENV === "production" ? 'production' : 'development';
 
@@ -34,4 +34,11 @@ module.exports = {
         },
         ],
     },
+    optimization: {
+        minimize: process.env.NODE_ENV === "production",
+        minimizer: [
+            `...`,
+            new CssMinimizerPlugin(),
+        ]
+    }
 };
