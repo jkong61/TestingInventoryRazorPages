@@ -1,11 +1,23 @@
 {
   "scripts": {
-    "buildcss:dev": "postcss ./Styles/tailwind.css -o ./wwwroot/css/site.css"
+    "start": "webpack --config webpack.config.js",
+    "watch": "webpack --watch",
+    "buildcss:dev": "postcss ./Styles/app.css -o ./wwwroot/css/site.css"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.6",
+    "css-loader": "^6.0.0",
+    "mini-css-extract-plugin": "^2.1.0",
     "postcss": "^8.3.5",
     "postcss-cli": "^8.3.1",
-    "tailwindcss": "^2.2.2"
+    "postcss-loader": "^6.1.1",
+    "tailwindcss": "^2.2.2",
+    "webpack": "^5.44.0",
+    "webpack-cli": "^4.7.2"
+  },
+  "-vs-binding": {
+    "BeforeBuild": [
+      "buildcss:dev"
+    ]
   }
 }

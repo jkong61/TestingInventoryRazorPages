@@ -20,7 +20,7 @@
     }
 
     .tw-container {
-        @apply tw-mx-auto px-4 lg:tw-px-20;
+        @apply tw-mx-auto tw-px-4 lg:tw-px-20;
     }
 
     .tw-footer {
